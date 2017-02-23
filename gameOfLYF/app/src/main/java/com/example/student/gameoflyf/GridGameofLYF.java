@@ -148,36 +148,47 @@ public class GridGameofLYF extends View {
 
     public void startNextGeneration(){
         boolean temp[][] = cellChecked;
-        int neighbours;
+        int neighbours = 0;
+        Log.d("Entering loops","");
         for(int i=1 ; i < numRows-1; i++) {
-
-            for(int j = 1; j < numColumns-1 ; j++) {
-                neighbours = 0;
-                for(int m = i-1; m <= i+1; m++){
-
-                    for(int n = j-1 ; n<=j+1;n++)
-                    {
-                        if(m!=i && n!=j)
-                            if (cellChecked[m][n]){
-                                neighbours++;
-                            }
-                    }
-
-                }
-                if(neighbours < 2 || neighbours > 3){
-                    if(cellChecked[i][j])
+            for (int j = 1; j < numColumns - 1; j++) {
+                neighbours = calculateNeighbours(i, j);
+                if (neighbours < 2 || neighbours > 3) {
+                    if (cellChecked[i][j]) {
                         temp[i][j] = false;
+                    }
                 }
-                else
-                    if(!cellChecked[i][j])
+                else {
+                    if (!cellChecked[i][j]) {
                         temp[i][j] = true;
-                Log.i("Cell :  " + cellChecked[i][j],"");
-                Log.i("neighbour :  " + neighbours + "","");
+                    }
+                    Log.d("HAHA ", "HEHE");
+                    Log.d("i is : ", i + "");
+                    Log.d("j is : ", j + "");
+                    Log.d("Cell is ", cellChecked[i][j] + "");
+                    Log.d("neighbour :  ", neighbours + "");
+                }
             }
         }
-        Log.i("Tanmay","Bhatt");
         cellChecked = temp;
         invalidate();
+    }
+
+    public int calculateNeighbours(int i, int j)
+    {
+        Log.d("Calculating neighbours","");
+
+        int neighbours = 0;
+        for (int m = i - 1; m <= i + 1; m++) {
+            for (int n = j - 1; n <= j + 1; n++) {
+                if (!(m == i && n == j)) {
+                    if (cellChecked[m][n]) {
+                        neighbours++;
+                    }
+                }
+            }
+        }
+        return neighbours;
     }
 }
 
