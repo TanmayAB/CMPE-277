@@ -15,7 +15,7 @@ package com.example.student.gameoflyf;
         import java.util.zip.Inflater;
 
 public class GridGameofLYF extends View {
-    private int numColumns =6 , numRows = 6;
+    private int numColumns =12 , numRows = 12;
     private int cellWidth, cellHeight;
     private Paint myPaint = new Paint();
     private boolean[][] cellChecked;
@@ -147,11 +147,14 @@ public class GridGameofLYF extends View {
     }
 
     public void startNextGeneration(){
-        boolean temp[][] = cellChecked;
+        Log.i("Starting Nextgen","!!!");
+        boolean[][] temp = new boolean[numRows][numColumns];
+
         int neighbours = 0;
-        Log.d("Entering loops","");
+        Log.d("Entering loops","logo");
         for(int i=1 ; i < numRows-1; i++) {
             for (int j = 1; j < numColumns - 1; j++) {
+                temp[i][j] = cellChecked[i][j];
                 neighbours = calculateNeighbours(i, j);
                 if (neighbours < 2 || neighbours > 3) {
                     if (cellChecked[i][j]) {
@@ -162,12 +165,12 @@ public class GridGameofLYF extends View {
                     if (!cellChecked[i][j]) {
                         temp[i][j] = true;
                     }
-                    Log.d("HAHA ", "HEHE");
-                    Log.d("i is : ", i + "");
-                    Log.d("j is : ", j + "");
-                    Log.d("Cell is ", cellChecked[i][j] + "");
-                    Log.d("neighbour :  ", neighbours + "");
                 }
+                Log.d("HAHA ", "HEHE");
+                Log.d("i is : ", i + "");
+                Log.d("j is : ", j + "");
+                Log.d("Cell is ", cellChecked[i][j] + "");
+                Log.d("neighbour :  ", neighbours + "");
             }
         }
         cellChecked = temp;
@@ -176,13 +179,21 @@ public class GridGameofLYF extends View {
 
     public int calculateNeighbours(int i, int j)
     {
-        Log.d("Calculating neighbours","");
+        Log.d("aa entered i : ",i+"");
+        Log.d("aa entered j : ",j+"");
 
         int neighbours = 0;
         for (int m = i - 1; m <= i + 1; m++) {
             for (int n = j - 1; n <= j + 1; n++) {
+                Log.d("aa m : ",m+"");
+                Log.d("aa n : ",n+"");
+                if(m==2 && n==2)
+                    Log.e("aa checked ",cellChecked[m][n]+"");
                 if (!(m == i && n == j)) {
                     if (cellChecked[m][n]) {
+                        Log.d("aa i : ",i+"");
+                        Log.d("aa j : ",j+"");
+
                         neighbours++;
                     }
                 }
