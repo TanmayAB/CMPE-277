@@ -12,15 +12,17 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.GridLayout;
+import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static String EXTRA_MESSAGE = "com.example..";
     private Button mStart_game;
+    private Spinner mspinner_grid;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,18 +31,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Assigning view items to variable
+        mspinner_grid = (Spinner) findViewById(R.id.spinner_grid);
         mStart_game = (Button) findViewById(R.id.game_start);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.Grids_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mspinner_grid.setAdapter(adapter);
+
     }
 
     public void startGame(View view){
         Log.i("Created an intent","aaa");
 
-        Intent intent = new Intent(this, GridActivity.class);
-        //EditText editText = (EditText) findViewById(R.id.edit_message);
-       // String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, "my foot");
-        startActivity(intent);
-        Log.i("Going out","bye");
 
+        int selected_item = Integer.parseInt((String)mspinner_grid.getSelectedItem());
+        Intent intent = new Intent(this, GridActivity.class);
+        intent.putExtra("no_of_Grids",selected_item);
+        startActivity(intent);
     }
 }

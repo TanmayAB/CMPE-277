@@ -15,10 +15,11 @@ package com.example.student.gameoflyf;
         import java.util.zip.Inflater;
 
 public class GridGameofLYF extends View {
-    private int numColumns =12 , numRows = 12;
+    private int numColumns, numRows;
     private int cellWidth, cellHeight;
+    private int totalWidth, totalHeight;
     private Paint myPaint = new Paint();
-    private boolean[][] cellChecked;
+    private boolean[][]cellChecked;
     private Button mnext_generation;
     private View view;
 
@@ -78,8 +79,11 @@ public class GridGameofLYF extends View {
         }
         Log.i("My Width : ", getWidth()+"");
         Log.i("My height : ", getHeight()+"");
-        cellWidth = 720 / numColumns;
-        cellHeight = 720 / numRows;
+
+        totalWidth = getWidth();
+        totalHeight = getWidth();
+        cellWidth = totalWidth / numColumns;
+        cellHeight = totalHeight / numRows;
 
         cellChecked = new boolean[numColumns][numRows];
 
@@ -94,8 +98,8 @@ public class GridGameofLYF extends View {
             return;
         }
 
-        int width = 720;
-        int height = 720;
+        int width = totalWidth;
+        int height = totalHeight;
 
         for (int i = 0; i < numColumns; i++) {
             for (int j = 0; j < numRows; j++) {
@@ -104,13 +108,13 @@ public class GridGameofLYF extends View {
                     Log.i("start Y",(i*cellHeight) +"");
                     Log.i("End x : ", ((i+1) * cellWidth) + "");
                     Log.i("End Y",((i+1) * cellHeight) +"");
-                    int circle_x = (i+1) * (720/numRows) -(720/numRows)/2 ;
-                    int circle_y = (j+1) * (720/numColumns) - (720/numColumns)/2;
+                    int circle_x = (i+1) * (totalWidth/numRows) -(totalWidth/numRows)/2 ;
+                    int circle_y = (j+1) * (totalHeight/numColumns) - (totalHeight/numColumns)/2;
                     Log.i("Circle X ", i*30 + "");
                     Log.i("Circle y ", j*30 + "");
                     //  canvas.drawr
                     myPaint.setColor(Color.RED);
-                    canvas.drawCircle(circle_x,circle_y,(720/numColumns)/2,myPaint);
+                    canvas.drawCircle(circle_x,circle_y,(totalHeight/numColumns)/2,myPaint);
                     myPaint.setColor(Color.BLACK);
 
                     /*canvas.drawRect(i * cellWidth, j * cellHeight,
@@ -147,53 +151,49 @@ public class GridGameofLYF extends View {
     }
 
     public void startNextGeneration(){
-        Log.i("Starting Nextgen","!!!");
         boolean[][] temp = new boolean[numRows][numColumns];
 
         int neighbours = 0;
-        Log.d("Entering loops","logo");
-        for(int i=1 ; i < numRows-1; i++) {
-            for (int j = 1; j < numColumns - 1; j++) {
+        for(int i=0 ; i < numRows; i++) {
+            for (int j = 0; j < numColumns; j++) {
                 temp[i][j] = cellChecked[i][j];
-                neighbours = calculateNeighbours(i, j);
+                neighbours = calculateNeighbours(i, j,numRows);
                 if (neighbours < 2 || neighbours > 3) {
                     if (cellChecked[i][j]) {
                         temp[i][j] = false;
                     }
                 }
-                else {
+                else if(neighbours == 3) {
                     if (!cellChecked[i][j]) {
                         temp[i][j] = true;
                     }
                 }
-                Log.d("HAHA ", "HEHE");
-                Log.d("i is : ", i + "");
-                Log.d("j is : ", j + "");
-                Log.d("Cell is ", cellChecked[i][j] + "");
-                Log.d("neighbour :  ", neighbours + "");
+//                Log.d("Cell is ", cellChecked[i][j] + "");
+//                Log.d("neighbour :  ", neighbours + "");
             }
         }
         cellChecked = temp;
         invalidate();
     }
 
-    public int calculateNeighbours(int i, int j)
+    public int calculateNeighbours(int i, int j,int grid_size)
     {
-        Log.d("aa entered i : ",i+"");
-        Log.d("aa entered j : ",j+"");
+        Log.d("aa i is : ",i+"");
+        Log.d("aa j is : ",j+"");
+        int neighbours =0;
+        int temp_m = (i-1) % grid_size;
+        if(temp_m < 0)
+            temp_m +=grid_size;
+        int temp_n = (j-1) % grid_size;
+        if(temp_n < 0)
+            temp_n +=grid_size;
 
-        int neighbours = 0;
-        for (int m = i - 1; m <= i + 1; m++) {
-            for (int n = j - 1; n <= j + 1; n++) {
-                Log.d("aa m : ",m+"");
-                Log.d("aa n : ",n+"");
-                if(m==2 && n==2)
-                    Log.e("aa checked ",cellChecked[m][n]+"");
+        for (int m = temp_m; m !=(i + 2) % grid_size; m = (m +1)%grid_size) {
+            for (int n = temp_n; n != (j + 2) % grid_size; n = (n+1)%grid_size) {
+                Log.d("aa m is : ",m+"");
+                Log.d("aa n is : ",n+"");
                 if (!(m == i && n == j)) {
                     if (cellChecked[m][n]) {
-                        Log.d("aa i : ",i+"");
-                        Log.d("aa j : ",j+"");
-
                         neighbours++;
                     }
                 }

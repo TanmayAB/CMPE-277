@@ -19,10 +19,11 @@ public class GridActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid);
-        Log.i("Created an activity","Loading layout");
+        int no_of_Grids = getIntent().getIntExtra("no_of_Grids",12);
         mNext_gen = (Button) this.findViewById(R.id.next_gen);
         mgridGameofLYF =  (GridGameofLYF) this.findViewById(R.id.game_grid);
-
+        mgridGameofLYF.setNumColumns(no_of_Grids);
+        mgridGameofLYF.setNumRows(no_of_Grids);
         View.OnClickListener listener= new View.OnClickListener() {
 
             @Override
