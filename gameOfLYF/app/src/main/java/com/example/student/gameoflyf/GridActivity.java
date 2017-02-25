@@ -14,6 +14,7 @@ public class GridActivity extends AppCompatActivity {
 
     private GridGameofLYF mgridGameofLYF;
     private Button mNext_gen;
+    private Button mreset;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -21,6 +22,7 @@ public class GridActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grid);
         int no_of_Grids = getIntent().getIntExtra("no_of_Grids",12);
         mNext_gen = (Button) this.findViewById(R.id.next_gen);
+        mreset = (Button) this.findViewById(R.id.reset);
         mgridGameofLYF =  (GridGameofLYF) this.findViewById(R.id.game_grid);
         mgridGameofLYF.setNumColumns(no_of_Grids);
         mgridGameofLYF.setNumRows(no_of_Grids);
@@ -34,5 +36,16 @@ public class GridActivity extends AppCompatActivity {
         };
 
         mNext_gen.setOnClickListener(listener);
+        View.OnClickListener listener1 = new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                mgridGameofLYF.resetGrid();
+            }
+        };
+
+        mreset.setOnClickListener(listener1);
+
+
     }
 }

@@ -99,7 +99,7 @@ public class GridGameofLYF extends View {
         }
 
         int width = totalWidth;
-        int height = totalHeight;
+        int height = totalWidth;
 
         for (int i = 0; i < numColumns; i++) {
             for (int j = 0; j < numRows; j++) {
@@ -132,6 +132,11 @@ public class GridGameofLYF extends View {
         for (int i = 1; i < numRows; i++) {
             canvas.drawLine(0, i * cellHeight, width, i * cellHeight, myPaint);
         }
+
+        canvas.drawLine(0,0,totalWidth,0,myPaint);
+        canvas.drawLine(1,0,1,totalWidth,myPaint);
+        canvas.drawLine(totalWidth,0,totalWidth,totalWidth,myPaint);
+        canvas.drawLine(0,totalWidth,totalWidth,totalWidth,myPaint);
     }
 
     @Override
@@ -200,6 +205,11 @@ public class GridGameofLYF extends View {
             }
         }
         return neighbours;
+    }
+
+    public void resetGrid(){
+        cellChecked = new boolean[numRows][numColumns];
+        invalidate();
     }
 }
 

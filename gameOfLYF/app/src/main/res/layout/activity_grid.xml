@@ -10,16 +10,36 @@ xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:id="@+id/game_grid"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <Button
     android:text="Next Generation"
     android:layout_width="wrap_content"
-    android:layout_marginBottom="24dp"
+    android:layout_marginBottom="20dp"
     android:id="@+id/next_gen"
     android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:layout_alignParentBottom="true" />
+        android:textAllCaps="false"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/game_grid"
+        android:layout_alignStart="@+id/game_grid"
+        android:layout_marginLeft="43dp"
+        android:layout_marginStart="43dp" />
+
+    <Button
+        android:text="Reset"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reset"
+        android:layout_alignBaseline="@+id/next_gen"
+        android:layout_alignBottom="@+id/next_gen"
+        android:layout_alignRight="@+id/game_grid"
+        android:layout_alignEnd="@+id/game_grid"
+        android:layout_marginRight="51dp"
+        android:layout_marginEnd="51dp" />
 
 </RelativeLayout>

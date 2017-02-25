@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
                 R.array.Grids_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mspinner_grid.setAdapter(adapter);
+        int position = adapter.getPosition("12");
+        mspinner_grid.setSelection(position);
 
     }
 
