@@ -2,6 +2,7 @@ package com.example.student.gameoflyf;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -43,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startGame(View view){
-        Log.i("Created an intent","aaa");
-
 
         int selected_item = Integer.parseInt((String)mspinner_grid.getSelectedItem());
         Intent intent = new Intent(this, GridActivity.class);

@@ -1,13 +1,13 @@
 package com.example.student.gameoflyf;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 /**
- * Created by Student on 2/23/17.
+ * Created by Tanmay on 2/23/17.
  */
 
 public class GridActivity extends AppCompatActivity {
@@ -30,7 +30,6 @@ public class GridActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Log.i("Clicked button","!!");
                 mgridGameofLYF.startNextGeneration();
             }
         };
@@ -43,9 +42,6 @@ public class GridActivity extends AppCompatActivity {
                 mgridGameofLYF.resetGrid();
             }
         };
-
         mreset.setOnClickListener(listener1);
-
-
     }
 }

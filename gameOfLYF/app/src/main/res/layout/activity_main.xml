@@ -11,18 +11,6 @@
     tools:context="com.example.student.gameoflyf.MainActivity"
     android:background="@color/colorAccent">
 
-    <Button
-        android:text="Start Game"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/game_start"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="48dp"
-        android:onClick="startGame"
-        android:background="@android:color/holo_blue_bright"
-        android:textSize="24sp" />
-
     <TextView
         android:text="Game Of Life"
         android:layout_width="wrap_content"
@@ -34,6 +22,29 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_grid"
+        android:scrollbarSize="10dp"
+        android:popupBackground="@android:color/background_light"
+        android:layout_alignRight="@+id/game_name"
+        android:layout_alignEnd="@+id/game_name"
+        android:layout_alignTop="@+id/no_of_grid" />
+
+    <Button
+        android:text="Start Game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/game_start"
+        android:onClick="startGame"
+        android:background="@android:color/holo_blue_bright"
+        android:textSize="24sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="35dp" />
+
     <TextView
         android:text="No. of Grids"
         android:layout_width="wrap_content"
@@ -41,22 +52,11 @@
         android:id="@+id/no_of_grid"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        android:layout_alignTop="@+id/spinner_grid"
+        android:layout_marginTop="56dp"
+        android:layout_below="@+id/game_name"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="40dp"
-        android:layout_below="@id/game_name"
-        android:layout_marginStart="40dp" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:id="@+id/spinner_grid"
-        android:scrollbarSize="10dp"
-        android:popupBackground="@android:color/background_light"
-        android:layout_below="@+id/game_name"
-        android:layout_alignRight="@+id/game_name"
-        android:layout_alignEnd="@+id/game_name" />
+        android:layout_marginLeft="63dp"
+        android:layout_marginStart="63dp" />
 
 </RelativeLayout>
