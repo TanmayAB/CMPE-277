@@ -19,11 +19,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.GridLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button mStart_game;
     private Spinner mspinner_grid;
+    private TextView mRule;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,16 @@ public class MainActivity extends AppCompatActivity {
         int position = adapter.getPosition("12");
         mspinner_grid.setSelection(position);
 
+        mRule = (TextView) findViewById(R.id.rules);
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Pop.class));
+            }
+        };
+
+        mRule.setOnClickListener(listener);
     }
 
     public void startGame(View view){
