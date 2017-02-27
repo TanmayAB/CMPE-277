@@ -1,8 +1,11 @@
 package com.example.student.gameoflyf;
 
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 
@@ -39,7 +42,24 @@ public class GridActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                mgridGameofLYF.resetGrid();
+
+                DialogInterface.OnClickListener dialogListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch(which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                mgridGameofLYF.resetGrid();
+                                break;
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                break;
+                            default: break;
+                        }
+
+                    }
+                };
+                @SuppressWarnings("deprecation")
+                AlertDialog.Builder builder = new AlertDialog.Builder(GridActivity.this);
+                builder.setMessage("Do you want to Reset the game?").setPositiveButton("Yes",dialogListener).setNegativeButton("No",dialogListener).show();
             }
         };
         mreset.setOnClickListener(listener1);

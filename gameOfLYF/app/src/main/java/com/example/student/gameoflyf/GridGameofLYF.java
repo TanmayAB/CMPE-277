@@ -95,19 +95,19 @@ public class GridGameofLYF extends View {
                 }
             }
         }
-
-        for (int i = 1; i < numColumns; i++) {
-            canvas.drawLine(i * cellWidth, 0, i * cellWidth, height, myPaint);
+        int k;
+        for (k = 1; k < numColumns; k++) {
+            canvas.drawLine(k * cellWidth, 0, k * cellWidth, height, myPaint);
         }
 
-        for (int i = 1; i < numRows; i++) {
-            canvas.drawLine(0, i * cellHeight, width, i * cellHeight, myPaint);
+        for (k = 1; k < numRows; k++) {
+            canvas.drawLine(0, k * cellHeight, width, k * cellHeight, myPaint);
         }
 
-        canvas.drawLine(0,0,totalWidth,0,myPaint);
-        canvas.drawLine(1,0,1,totalWidth,myPaint);
-        canvas.drawLine(totalWidth,0,totalWidth,totalWidth,myPaint);
-        canvas.drawLine(0,totalWidth,totalWidth,totalWidth,myPaint);
+        canvas.drawLine(0,0,k * cellWidth,0,myPaint);
+        canvas.drawLine(1,0,1,k * cellWidth,myPaint);
+        canvas.drawLine(k * cellWidth,0,k * cellWidth,k * cellWidth,myPaint);
+        canvas.drawLine(0,k * cellWidth,k * cellWidth,k * cellWidth,myPaint);
     }
 
     @Override
