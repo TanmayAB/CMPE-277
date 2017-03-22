@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">gameOfLYF</string>
+
+    <string-array name="Grids_array">
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+    </string-array>
+    <string name="rules">
+        <body style="text-align:justify;color:black;background-color:#00000000">
+\n\n\t\u2022 Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.\n\n 	\u2022 Any live cell with two or three live neighbours lives on to the next generation.\n\n 	\u2022 Any live cell with more than three live neighbours dies, as if by overpopulation.\n\n 	\u2022 Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.\n "
+        </body>
+    </string>
+</resources>
